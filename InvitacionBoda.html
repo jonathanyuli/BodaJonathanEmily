@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Jonathan y Emily</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@300;400;700&display=swap">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            /*background: linear-gradient(180deg, #c3ddec, #022a7a);*/
+            background-color: #002366;
+            background-repeat: no-repeat;
+            color: #333;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-size: 100% 100%;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Great Vibes', cursive;
+            color: #002366;
+            margin: 30px 0;
+        }
+
+        p {
+            /*font-family: 'fantasy', cursive;*/
+            font-family: 'Great Vibes', cursive;
+            font-size: 25px;
+            line-height: 1;
+            margin: 10px 20px;
+            font-weight: bold;
+        }
+
+        button {
+        font-family: 'Great Vibes', cursive;
+        font-size: 30px;
+        background: #010b6b;
+        color: gold;
+        border: none;
+        padding: 10px 20px;
+        margin: 10px;
+        border-radius: 40px;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 
+                    0 3px 6px rgba(0, 0, 0, 0.5) inset;
+        transition: transform 0.2s ease-in-out;
+        }
+
+        /* Agrega un efecto al hacer hover */
+        button:hover {
+            background: goldenrod;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 
+                        0 4px 8px rgba(0, 0, 0, 0.6) inset;
+        }
+
+        .section {
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto;
+            text-align: center;
+            border: 15px solid goldenrod;
+            border-radius: 40px;
+            /*background: #fff;*/
+            background-image: url("fondoperlado.png");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            padding: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .section img {
+            width: 100%;
+            border-radius: 30px;
+            margin-bottom: 10px;
+        }
+
+        /* Carousel */
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            overflow: hidden;
+            border-radius: 10px;
+            margin: 20px auto;
+        }
+
+        .carousel img {
+            width: 100%;
+            display: none;
+        }
+
+        .carousel img.active {
+            display: block;
+        }
+
+        /* Envelope Animation */
+        #envelope {
+            width: 300px;
+            height: 250px;
+            background-image: url('sobre1.png');
+            background-size: cover;
+            border: none;
+            position: relative;
+            margin: 50px auto;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeIn 3s ease-in-out forwards;
+        }
+
+        #open-image {
+            display: none;
+            width: 300px;
+            height: 300px;
+            background-image: url('sobreabierto.png'); /* Imagen del sobre abierto */
+            background-size: cover;
+            position: relative;
+            margin: 50px auto;
+            animation: openEffect 1s ease-in-out forwards;
+            
+        }
+
+        #invitation {
+            display: none;
+            
+        }
+
+        #invitation.open {
+            display: block;
+        }
+
+        #fondo {
+            width: 100%;
+            height: 300px;
+            background-image: url("https://placeimg.com/1000/480/people");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+
+        /* Countdown */
+        #countdown {
+            font-size: 20px;
+            color: #002366;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+         /* Bubbles Animation */
+         .bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: 0;
+            width: 40px; /* Doble del tamaño original */
+            height: 40px; /* Doble del tamaño original */
+            /*background: rgba(255, 255, 255, 0.5);*/
+            background: goldenrod;
+            border-radius: 50%;
+            animation: rise 10s infinite ease-in;
+            filter: blur(2px);
+        }
+
+        .bubble:nth-child(1) { left: 10%; animation-duration: 12s; }
+        .bubble:nth-child(2) { left: 20%; animation-duration: 15s; animation-delay: 2s; }
+        .bubble:nth-child(3) { left: 30%; animation-duration: 10s; animation-delay: 4s; }
+        .bubble:nth-child(4) { left: 40%; animation-duration: 14s; animation-delay: 1s; }
+        .bubble:nth-child(5) { left: 50%; animation-duration: 11s; animation-delay: 3s; }
+        .bubble:nth-child(6) { left: 60%; animation-duration: 13s; animation-delay: 5s; }
+        .bubble:nth-child(7) { left: 70%; animation-duration: 16s; animation-delay: 2s; }
+        .bubble:nth-child(8) { left: 80%; animation-duration: 9s; animation-delay: 6s; }
+        .bubble:nth-child(9) { left: 90%; animation-duration: 10s; animation-delay: 4s; }
+
+        @keyframes rise {
+            0% { transform: translateY(0) scale(0.5); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes openEffect {
+            from {
+                transform: scale(1);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
+            /* Estilo para la ventana emergente */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .popup-content h2 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #002366;
+        }
+
+        .popup-content p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .popup-content button {
+            background: #010b6b;
+            color: gold;
+            font-size: 18px;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .popup-content button:hover {
+            background: goldenrod;
+            transform: translateY(-3px);
+        }
+
+        .invitation-list-container {
+            max-height: 300px; /* Altura máxima del contenedor */
+            overflow-y: auto; /* Activa el scroll vertical si el contenido excede la altura */
+            margin: 20px auto;
+            padding: 10px;
+            border: 2px solid #d4af37; /* Bordes dorados */
+            border-radius: 15px;
+            background-color: #f9f9f9; /* Fondo claro */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+        }
+
+        .invitation-list {
+            font-family: 'Georgia', serif;
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #003366; /* Azul elegante */
+            list-style-type: decimal;
+            list-style-position: inside;
+            text-align: left; /* Alineación a la izquierda */
+            margin: 0; /* Eliminamos el margen adicional de la lista */
+            padding: 0;
+        }
+
+        .invitation-list li {
+            margin-bottom: 10px;
+        }
+
+        .invitation-list li::marker {
+            color: #d4af37; /* Color dorado para los números */
+            font-weight: bold;
+        }
+
+        /* Estilos generales para la galería */
+        .gallery-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .gallery-container img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-container img:hover {
+            transform: scale(1.1);
+        }
+
+         /* Estilo para el popup de imagen ampliada */
+        #enlarged-image-popup img {
+            max-width: 90%;
+            max-height: 90vh;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Music -->
+    <audio id="backgroundMusic" loop>
+        <source src="musicaboda.mp3" type="audio/mpeg">
+        Tu navegador no soporta reproducción de audio.
+    </audio>
+    <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+    <!-- Animación del sobre -->
+    <div id="envelope" onclick="openEnvelope()"></div>
+    <div id="open-image"></div>
+
+
+    <!-- Contenido de la invitación -->
+    <div id="invitation">
+        <div class="section">
+            <h1>¡Nos casamos!</h1>
+            <img src="foto10.png" alt="Foto">
+            <h1>Jonathan Canizalez Santos</h1>
+            <p>&</p>
+            <h1>Emily Jiménez Víquez</h1>
+            <p>"Una cuerda triple no se rompe fácilmente" Eclesiastes 4:12 </p>
+            
+        </div>
+
+        <div class="section">
+            <h1>Queremos Invitarles a compartir junto a nosotros el comienzo de esta bella historia de Amor...</h1>
+            <div class="carousel">
+                <img src="foto1.jpg" alt="Foto 1" class="active">
+                <img src="foto2.jpg" alt="Foto 2">
+                <img src="foto3.jpg" alt="Foto 3">
+                <img src="foto4.jpg" alt="Foto 4">
+                <img src="foto5.jpg" alt="Foto 5">
+                <img src="foto6.jpg" alt="Foto 6">
+                <img src="foto7.jpg" alt="Foto 7">
+            </div>
+            <button onclick="showPopup('gallery-popup')">Ver Galeria</button>
+            <!-- Popup para la galería -->
+            <div id="gallery-popup" class="popup-overlay">
+                <div class="popup-content">
+                    <button onclick="hidePopup('gallery-popup')" style="float: right;">X</button>
+                    <h1>Galería de Fotos</h1>
+                    <div class="gallery-container">
+                        <img src="foto1.jpg" alt="Foto 1" onclick="enlargeImage(this)">
+                        <img src="foto3.jpg" alt="Foto 3" onclick="enlargeImage(this)">
+                        <img src="foto4.jpg" alt="Foto 4" onclick="enlargeImage(this)">
+                        <img src="foto5.jpg" alt="Foto 5" onclick="enlargeImage(this)">
+                        <img src="foto6.jpg" alt="Foto 6" onclick="enlargeImage(this)">
+                        <img src="foto7.jpg" alt="Foto 7" onclick="enlargeImage(this)">
+                    </div>
+                    <h2>Queremos compartir contigo nuestra felicidad</h2>
+                </div>
+            </div>
+
+            <!-- Contenedor para la imagen ampliada -->
+            <div id="enlarged-image-popup" class="popup-overlay">
+                <div class="popup-content">
+                    <button onclick="hidePopup('enlarged-image-popup')" style="float: right;">X</button>
+                    <img id="enlarged-image" src="" alt="Ampliada" style="width: 100%; border-radius: 10px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h1>¡Save de Date!</h1>
+            <img src="5abril.png" alt="Save de Date">
+            <h1>Sábado 5 de Abril 2025</h1>
+            <p>11:00 am</p>
+            <div id="countdown"></div>
+            <button onclick="saveToCalendar()">Guardar en tu Calendario</button>
+
+        </div>
+
+        <div class="section">
+            <h1>Ubicaciónes</h1>
+            <img src="Ubicacion.png" alt="Ubicaciones">
+            <p>Conoce las Ubicaciones del gran día:</p>
+            <button onclick="window.open('https://maps.app.goo.gl/EHUezLw7ThbBEZhG6', '_blank')">Conferencia</button>
+            <h2>Salón de Reino de los testigos de Jehová,Tejar del Guarco</h2>
+            <button onclick="window.open('https://maps.app.goo.gl/r3M4yxBah3pWuZEX7', '_blank')">Recepción</button>
+            <h2>Sala de Eventos Monika</h2>
+        </div>
+
+        <div class="section">
+            <h1>Confirmación de asistencia</h1>
+            <img src="whatsapp.png" alt="Confirmación">
+            <p>Agradecemos pueda confirmar su asistencia al novio o a la novia antes del sábado 1 de marzo</p>
+            <button onclick="window.open('https://wa.link/rgb9on')">Confirmar a Jonathan</button>
+            <button onclick="window.open('https://wa.link/mjsycc')">Confirmar a Emily</button>
+        </div>
+
+        <div class="section">
+            <h1>¡Nuestro mejor regalo es su presencia!</h1>
+            <img src="gif1.png" alt="Ubicaciones">
+            <p>Agradecemos sus muestras de cariño en la forma que usted desee</p>
+        </div>
+
+        <div class="section">
+            <h1>Comparte las fotos desde tu perspectiva, en ese día tan especial...</h1>
+            <img src="qr.png" alt="Código QR para subir fotos">
+            <p>Escanea el siguiente código QR para subir tus fotos a nuestra carpeta compartida:</p>
+        </div>
+
+        <div class="section">
+            <h1>Dress Code</h1>
+            <img src="dresscode.png" alt="Código QR para subir fotos">
+            <p>Esta será una ocación muy Especial, en la que agrademos puedas asistir en vestimenta de tipo:</p>
+            <H2>Formal</H2>
+        </div>
+
+        <div class="section">
+            <h1>¡Importante Recordar!</h1>
+            <img src="notas1.png" alt="Ubicaciones">    
+            <button onclick="showPopup('notes-popup')">Toma nota por favor</button>
+        </div>
+
+        <div id="notes-popup" class="popup-overlay">
+            <div class="popup-content">
+                <div class="invitation-list-container">
+                    <ul class="invitation-list">
+                      <li>Por favor agradecemos confirmar su asistencia y responder a la invitación lo antes posible.</li>
+                      <li>Estaremos recordando tu asistencia el día Sábado 1 de marzo 2025.</li>
+                      <li>Para la ceremonia agradecemos su puntualidad, por favor llega a tiempo.</li>
+                      <li>Por favor cuida el codigo de vestimenta, para esta ocación tan especial.</li>
+                      <li>En la recepción hemos asignado un asiento para cada invitado.</li>
+                      <li>Porfavor no llevar acompañantes no invitados; Asiste solo con las personas incluidas en tu invitación.</li>
+                      <li>Agradecemos que compartas los bellos recuerdos de ese día especial en nuestra carpeta compartida, y te solicitamos de favor no borrar las fotos que suban otros invitados.</li>
+                      <li>Hay ciertas costumbres que no seran incluidas en la recepción como por ejemplo: El brindis, entre otras; Favor respetar la organización y el itinerario de toda la boda.</li>
+                      <li>Gracias por comprender y apoyarnos en este día tan especial.</li>
+                      <li>Esperamos con ansias poder compartir con ustedes nuestra felicidad.</li>
+                    </ul>
+                  </div>
+                <button onclick="closePopup()">Cerrar</button>
+            </div>
+    </div>
+
+    <script>
+        function openEnvelope() {
+            const envelope = document.getElementById('envelope');
+            const openImage = document.getElementById('open-image');
+            const music = document.getElementById('backgroundMusic');
+            const invitation = document.getElementById('invitation');
+
+            envelope.style.display = 'none';
+            openImage.style.display = 'block';
+
+            setTimeout(() => {
+                openImage.style.display = 'none';
+                invitation.classList.add('open');
+                music.play();
+            }, 1000);
+        }
+
+        function saveToCalendar() {
+            const link = document.createElement('a');
+            link.href = 'data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ASUMMARY:Boda de Jonathan y Yuli%0ADESCRIPTION:Conferencia y Recepción%0ALOCATION:Salón del Reino: https://maps.app.goo.gl/EHUezLw7ThbBEZhG6%0ADTSTART:20250405T170000Z%0AEND:VEVENT%0AEND:VCALENDAR';
+            link.download = 'boda-jony-yuli.ics';
+            link.click();
+        }
+       
+
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.carousel img');
+
+        setInterval(() => {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add('active');
+        }, 3000);
+
+        function showPopup(id) {
+            document.getElementById('overlay').classList.add('active');
+            document.getElementById(id).classList.add('active');
+        }
+
+        function closePopup() {
+            document.getElementById('overlay').classList.remove('active');
+            document.querySelectorAll('.popup').forEach(popup => popup.classList.remove('active'));
+        }
+
+        const countdown = document.getElementById('countdown');
+        const weddingDate = new Date('2025-04-05T11:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                countdown.innerHTML = '¡Es el gran día!';
+            }
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+
+        function showPopup(id) {
+        const popup = document.getElementById(id);
+        popup.classList.add('active');
+        }
+
+        function closePopup() {
+            const popups = document.querySelectorAll('.popup-overlay');
+            popups.forEach(popup => popup.classList.remove('active'));
+        }
+
+         // Función para ocultar un popup
+        function hidePopup(popupId) {
+            document.getElementById(popupId).classList.remove('active');
+        }
+         // Función para ampliar una imagen
+        function enlargeImage(image) {
+            const enlargedPopup = document.getElementById('enlarged-image-popup');
+            const enlargedImage = document.getElementById('enlarged-image');
+            enlargedImage.src = image.src; // Asigna la misma imagen al popup
+            showPopup('enlarged-image-popup');
+        }
+    </script>
+</body>
+</html>
