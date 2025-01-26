@@ -126,15 +126,14 @@
 
         #open-image {
             display: none;
-            width: 300px; /* Ajusta el ancho a un porcentaje de la pantalla */
-            max-width: 300px; /* Limita el tamaño máximo a 300px para evitar que sea demasiado grande */
-            height: auto; /* Mantiene la relación de aspecto de la imagen */
-            background-image: url('sobreabierto.png');
-            background-size: cover; /* Asegura que la imagen se ajuste sin deformarse */
-            background-repeat: no-repeat;
+            width: 300px;
+            height: 300px;
+            background-image: url('sobreabierto.png'); /* Imagen del sobre abierto */
+            background-size: cover;
             position: relative;
             margin: 50px auto;
             animation: openEffect 1s ease-in-out forwards;
+            
         }
 
         #invitation {
@@ -184,7 +183,7 @@
             width: 40px; /* Doble del tamaño original */
             height: 40px; /* Doble del tamaño original */
             /*background: rgba(255, 255, 255, 0.5);*/
-            background: goldenrod;
+            background: blue;
             border-radius: 50%;
             animation: rise 10s infinite ease-in;
             filter: blur(2px);
@@ -322,6 +321,7 @@
             width: 100px;
             height: 100px;
             object-fit: cover;
+            border: 2px solid #d4af37; /* Bordes dorados */
             border-radius: 10px;
             cursor: pointer;
             transition: transform 0.2s ease-in-out;
@@ -371,7 +371,7 @@
             <h1>Jonathan Canizalez Santos</h1>
             <p>&</p>
             <h1>Emily Jiménez Víquez</h1>
-            <p>"Una cuerda triple no se rompe fácilmente" Eclesiastes 4:12 </p>
+            <p>"Una cuerda triple no se rompe fácilmente Eclesiastes 4:12"</p>
             
         </div>
 
@@ -471,7 +471,7 @@
                 <div class="invitation-list-container">
                     <ul class="invitation-list">
                       <li>Por favor agradecemos confirmar su asistencia y responder a la invitación lo antes posible.</li>
-                      <li>Estaremos recordando tu asistencia el día Sábado 1 de marzo 2025.</li>
+                      <li>Estaremos recordando tu asistencia el día Sábado 1 de marzo 2025; De no confirmar asistencia a más tardar ese día, se dará por entendido que no podrán asistir.</li>
                       <li>Para la ceremonia agradecemos su puntualidad, por favor llega a tiempo.</li>
                       <li>Por favor cuida el codigo de vestimenta, para esta ocación tan especial.</li>
                       <li>En la recepción hemos asignado un asiento para cada invitado.</li>
