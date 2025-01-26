@@ -60,21 +60,31 @@
         }
 
         .section {
-            width: 100%;
-            max-width: 400px;
+            width: 90%; /* Ocupa el 90% del ancho de la pantalla */
+            max-width: 300px; /* Limita el ancho máximo para que no sea demasiado grande */
             margin: 20px auto;
             text-align: center;
             border: 15px solid goldenrod;
             border-radius: 40px;
-            /*background: #fff;*/
             background-image: url("fondoperlado.png");
             background-repeat: no-repeat;
-            background-size: 100% 100%;
+            background-size: cover; /* Ajusta el fondo sin deformarlo */
             padding: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-
+        /* Media query para pantallas pequeñas */
+        @media (max-width: 480px) {
+            .section {
+                padding: 5px; /* Reduce el padding para móviles */
+                border-width: 10px; /* Ajusta el borde si es muy grueso */
+            }
+            #open-image {
+            width: 80%; /* Se ajusta al 80% de la pantalla en móviles */
+            max-width: 250px; /* Limita el ancho máximo para dispositivos más pequeños */
+            margin: 30px auto; /* Reduce el margen en pantallas más pequeñas */
+    }
+        }
         .section img {
             width: 100%;
             border-radius: 30px;
@@ -116,8 +126,8 @@
 
         #open-image {
             display: none;
-            width: 400px;
-            height: 400px;
+            width: 300px;
+            height: 300px;
             background-image: url('sobreabierto.png'); /* Imagen del sobre abierto */
             background-size: cover;
             position: relative;
@@ -173,7 +183,7 @@
             width: 40px; /* Doble del tamaño original */
             height: 40px; /* Doble del tamaño original */
             /*background: rgba(255, 255, 255, 0.5);*/
-            background: goldenrod;
+            background: blue;
             border-radius: 50%;
             animation: rise 10s infinite ease-in;
             filter: blur(2px);
@@ -311,6 +321,7 @@
             width: 100px;
             height: 100px;
             object-fit: cover;
+            border: 2px solid #d4af37; /* Bordes dorados */
             border-radius: 10px;
             cursor: pointer;
             transition: transform 0.2s ease-in-out;
@@ -360,7 +371,7 @@
             <h1>Jonathan Canizalez Santos</h1>
             <p>&</p>
             <h1>Emily Jiménez Víquez</h1>
-            <p>"Una cuerda triple no se rompe fácilmente" Eclesiastes 4:12 </p>
+            <p>"Una cuerda triple no se rompe fácilmente Eclesiastes 4:12"</p>
             
         </div>
 
@@ -460,7 +471,7 @@
                 <div class="invitation-list-container">
                     <ul class="invitation-list">
                       <li>Por favor agradecemos confirmar su asistencia y responder a la invitación lo antes posible.</li>
-                      <li>Estaremos recordando tu asistencia el día Sábado 1 de marzo 2025.</li>
+                      <li>Estaremos recordando tu asistencia el día Sábado 1 de marzo 2025; De no confirmar asistencia a más tardar ese día, se dará por entendido que no podrán asistir.</li>
                       <li>Para la ceremonia agradecemos su puntualidad, por favor llega a tiempo.</li>
                       <li>Por favor cuida el codigo de vestimenta, para esta ocación tan especial.</li>
                       <li>En la recepción hemos asignado un asiento para cada invitado.</li>
